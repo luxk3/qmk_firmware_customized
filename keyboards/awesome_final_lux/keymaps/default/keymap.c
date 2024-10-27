@@ -4,7 +4,8 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-    _MAIN
+    _MAIN,
+	_CAMERA
 };
 
 
@@ -15,7 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	  RGB_HUI, KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,	   KC_MS_BTN2,	
 	  RGB_MODE_PLAIN, KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,	   KC_NO,	
 	  RGB_MODE_FORWARD, KC_LSFT, KC_GRAVE, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,	
-	  RGB_TOG, KC_LEFT_CTRL, KC_LEFT_ALT, KC_NO, KC_LEFT_GUI, KC_NO, KC_SPACE, KC_MS_BTN1, 
+	  RGB_TOG, KC_LEFT_CTRL, KC_LEFT_ALT, KC_NO, KC_LEFT_GUI, TG(_CAMERA), KC_SPACE, KC_MS_BTN1, 
 	  
 	  
 	  KC_7, KC_8, KC_9, KC_0, KC_MINUS, KC_EQUAL, KC_BACKSPACE, KC_MEDIA_PLAY_PAUSE,
@@ -24,11 +25,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	  KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RIGHT_SHIFT, KC_UP, KC_PRINT_SCREEN,
 	  KC_SPACE, KC_LEFT_GUI, KC_NO, KC_RIGHT_CTRL, KC_LEFT, KC_DOWN, KC_RIGHT
 	  
+  ),
+  [_CAMERA] = LAYOUT_default(
+		KC_NO, KC_NO,  KC_1,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,	
+		KC_NO, KC_NO,  KC_NO,    KC_PGUP,    KC_NO,    KC_NO,    KC_NO, KC_NO,	
+		KC_NO, KC_NO, KC_NO,    KC_PGDN,    KC_NO,    KC_NO,    KC_NO, KC_NO,	
+		KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,	
+		_______, _______, _______, _______, _______, _______, _______, _______, 
+
+
+		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+		_______, _______, _______, _______, _______, _______, _______
+
   )
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_MAIN] =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) }
+    [_MAIN] =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) },
+	[_CAMERA] = { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) }
 };
 #endif
